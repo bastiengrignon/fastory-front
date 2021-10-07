@@ -12,7 +12,6 @@ const App = () => {
     const sendSearchRequest = async (keyword: string): Promise<void> => {
         const result = await axios.get('/', { params: { keyword } }).then(r => r.data)
         setResults(result)
-        console.log(result)
     }
 
     return (
@@ -26,13 +25,7 @@ const App = () => {
             </div>
             <div className="flex space-x-5">
                 <div className="bg-white w-1/4 rounded-lg shadow-lg px-4 py-2">
-                    {
-                        !!results &&
-                        <div>
-                            <p className="text-xl">Liste des résultats : </p>
-                            <List data={ results }/>
-                        </div>
-                    }
+                    <List data={ results }/>
                 </div>
                 <div className="w-3/4 inline-flex space-x-2">
                     {

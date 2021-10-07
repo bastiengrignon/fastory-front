@@ -29,8 +29,9 @@ const App = () => {
                             <ul className="flex flex-col list-disc list-inside">
                                 {
                                     results.map((result, key) => (
-                                        <li key={ key }
-                                            className="text-blue-600 text-base">{ !!result.title ? result.title : result.name }</li>
+                                        <li key={ key } className="text-blue-600 text-base">
+                                            { !!result.title ? result.title : result.name }
+                                        </li>
                                     ))
                                 }
                             </ul>
@@ -39,9 +40,7 @@ const App = () => {
                 </div>
                 <div className="w-2/3 inline-flex space-x-2">
                     {
-                        results.map((result, key) => (
-                            <Card key={ key } data={ result }/>
-                        ))
+                        results.map((result, key) => <Card key={ key } data={ result }/>)
                     }
                 </div>
             </div>

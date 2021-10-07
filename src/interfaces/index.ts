@@ -1,4 +1,3 @@
-
 export interface People {
     name: string
     birth_year: string
@@ -108,3 +107,5 @@ export interface Planets {
     created : string
     edited: string
 }
+
+export interface Types  extends People, Films, Starships, Vehicles, Species, Planets {}

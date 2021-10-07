@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { Types } from '../../interfaces'
 import Card from '../Card'
 import Input from '../Input'
 
 const App = () => {
 
-    const [results, setResults] = useState<any[]>([])
+    const [results, setResults] = useState<Types[]>([])
 
     const sendSearchRequest = async (keyword: string): Promise<void> => {
         if (keyword.length > 2) {
@@ -30,7 +31,7 @@ const App = () => {
                                 {
                                     results.map((result, key) => (
                                         <li key={ key } className="text-blue-600 text-base">
-                                            { !!result.title ? result.title : result.name }
+                                            { typeof result === 'object' && 'title' in result ? result.title : result.name }
                                         </li>
                                     ))
                                 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Films, People, Planets, Species, Starships, Vehicles } from '../../interfaces'
+import { Types } from '../../interfaces'
 
 interface CardProps {
-    data: People | Films | Starships | Vehicles | Species | Planets
+    data: Types
 }
 
 const Card: React.FC<CardProps> = ({ data }) => {

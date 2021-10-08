@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { Types } from '../../interfaces'
 import { FilterService } from '../../service/filter.service'
+import { useDebounce } from '../../service/useDebounce'
 import Card from '../Card'
 import Input from '../Input'
 import List from '../List'
@@ -9,7 +10,16 @@ import List from '../List'
 const App = () => {
     const [results, setResults] = useState<Types[]>([])
     const [filteredResults, setFilteredResults] = useState<Types[]>(results)
-    const [keywordToSend, setKeywordToSend] = useState<string>("")
+    const [searchItem, setSearchItem] = useState<string>("")
+    const debouncedSearchItem = useDebounce(searchItem, 500)
+
+    useEffect(() => {
+        if (debouncedSearchItem) {
+            sendSearchRequest(searchItem)
+        } else {
+            setResults([])
+        }
+    }, [debouncedSearchItem])
 
     const sendSearchRequest = async (keyword: string): Promise<void> => {
         const result = await axios.get('/', { params: { keyword } }).then(r => r.data)
@@ -22,11 +32,7 @@ const App = () => {
     return (
         <div className="space-y-5 m-10">
             <div className="flex justify-center space-x-4">
-                <Input onChange={ (event) => setKeywordToSend(event.target.value) }/>
-                <button className="bg-blue-400 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-                        onClick={ () => sendSearchRequest(keywordToSend) }>
-                    Search
-                </button>
+                <Input onChange={ (event) => setSearchItem(event.target.value) }/>
                 <select
                     className="rounded-md outline-none border-2 border-transparent focus:border-blue-400 bg-gray-400 hover:bg-white focus:bg-white px-2"
                     onChange={ filterCards }>

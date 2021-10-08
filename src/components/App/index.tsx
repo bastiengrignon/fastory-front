@@ -23,11 +23,11 @@ const App = () => {
                     Search
                 </button>
             </div>
-            <div className="flex space-x-5">
-                <div className="bg-white w-1/4 rounded-lg shadow-lg px-4 py-2">
+            <div className="grid grid-cols-6 gap-5">
+                <div className="col-span-2">
                     <List data={ results }/>
                 </div>
-                <div className="w-3/4 inline-flex space-x-2">
+                <div className="col-span-4 grid grid-cols-3 gap-2">
                     {
                         results.map((result, key) => <Card key={ key } data={ result }/>)
                     }

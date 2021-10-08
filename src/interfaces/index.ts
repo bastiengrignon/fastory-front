@@ -1,4 +1,4 @@
-export interface People {
+export interface Peoples {
     name: string
     birth_year: string
     eye_color: string
@@ -23,6 +23,7 @@ export interface Films {
     opening_crawl: string
     director: string
     producer: string
+    release_date: string
     species: string[]
     starships : string[]
     vehicles : string[]
@@ -108,4 +109,4 @@ export interface Planets {
     edited: string
 }
 
-export interface Types  extends People, Films, Starships, Vehicles, Species, Planets {}
+export interface Types extends Peoples, Films, Starships, Vehicles, Species, Planets {}

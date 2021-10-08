@@ -9,5 +9,7 @@ module.exports = {
       borderWidth: ['focus']
     }
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ]
 }
